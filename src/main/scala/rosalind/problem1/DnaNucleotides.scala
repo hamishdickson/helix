@@ -13,6 +13,6 @@ package rosalind.problem1
  * returns: Four integers (separated by spaces) counting the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in s.
  *
  */
-class CountingDnaNucleotides {
-  def count(s: Char, dnaString: String) = dnaString.count(_ == s)
+class DnaNucleotides(nucleotides: String) {
+  def count(nuc: Char) = nucleotides.count(_ == nuc)
 }

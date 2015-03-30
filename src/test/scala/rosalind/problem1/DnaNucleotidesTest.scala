@@ -6,12 +6,15 @@ import org.scalatest._
  * Created by hamishdickson on 30/03/15.
  *
  */
-class CountingDnaNucleotidesTest extends FlatSpec with Matchers {
+class DnaNucleotidesTest extends FlatSpec with Matchers {
   "A dna counter" should "return the correct number of nucleotides" in {
     val dnaString: String = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
     
-    val counter: CountingDnaNucleotides = new CountingDnaNucleotides()
+    val counter: DnaNucleotides = new DnaNucleotides(dnaString)
     
-    counter.count('A', dnaString) should be (20)
+    counter.count('A') should be (20)
+    counter.count('C') should be (12)
+    counter.count('G') should be (17)
+    counter.count('T') should be (21)
   }
 }
