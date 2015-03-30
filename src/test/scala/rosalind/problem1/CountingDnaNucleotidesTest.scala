@@ -12,6 +12,6 @@ class CountingDnaNucleotidesTest extends FlatSpec with Matchers {
     
     val counter: CountingDnaNucleotides = new CountingDnaNucleotides()
     
-    counter.count("A", dnaString) should be (20)
+    counter.count('A', dnaString) should be (20)
   }
 }
