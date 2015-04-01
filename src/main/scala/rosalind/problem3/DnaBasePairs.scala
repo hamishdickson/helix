@@ -13,5 +13,18 @@ package rosalind.problem3
  *
  */
 class DnaBasePairs(s: String) {
-  def revComp: String = s
+  def revComp: String = {
+    val u = s.reverse.toCharArray
+
+    var res = ""
+
+    for (t <- u) t match {
+      case 'A' => res = res + "T"
+      case 'T' => res = res + "A"
+      case 'C' => res = res + "G"
+      case 'G' => res = res + "C"
+    }
+
+    res
+  }
 }
