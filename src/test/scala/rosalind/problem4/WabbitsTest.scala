@@ -7,7 +7,9 @@ import org.scalatest.{FlatSpec, Matchers}
  *
  */
 class WabbitsTest extends FlatSpec with Matchers {
-  "A single wrabbit pair" should "reproduce at a rate consistent with fibonacci" in {
-    
+  "After 5 months, a litter" should "reproduce 19 wabbits" in {
+    val wabbits = new Wabbits()
+
+    wabbits litter(5, 3) should be (19)
   }
 }
