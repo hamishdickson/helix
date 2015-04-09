@@ -9,6 +9,8 @@ package rosalind.problem6
  * Given: Two DNA strings s and t of equal length (not exceeding 1 kbp).
  * Return: The Hamming distance dH(s,t).
  *
+ * note: I'm aware I could have done this with a zip() function, but that's not my aim
+ *
  */
 class Mutations {
   def hemmingDistanceCounter(nuc1: String, nuc2: String): Int = {

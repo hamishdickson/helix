@@ -9,9 +9,9 @@ class Mendel1Test extends FlatSpec with Matchers {
   "Given any two from the given set of k, m, n organisims mating, the function" should "output the prob their offspring with be dominant in the trait" in {
     val mendel = new Mendel1
 
-    val homozygousDominantPopulation = 2
-    val heterozygousDominantPopulation = 2
-    val homozygousrecessivePopulation = 2
+    val homozygousDominantPopulation = 2 // Yy
+    val heterozygousDominantPopulation = 2 // yy
+    val homozygousrecessivePopulation = 2 // er ...?
 
     mendel.getProbOfTrait(homozygousDominantPopulation, heterozygousDominantPopulation, homozygousrecessivePopulation) should be (0.78333)
 
