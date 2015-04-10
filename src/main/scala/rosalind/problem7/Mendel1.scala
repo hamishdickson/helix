@@ -28,8 +28,53 @@ package rosalind.problem7
  * Return: The probability that two randomly selected mating organisms will produce an individual possessing a dominant
  * allele (and thus displaying the dominant phenotype). Assume that any two organisms can mate.
  *
+ *
+ * Note basically got stuck with this (I've not done biology since I was like 16 ok ..) ... this is important and not
+ * very well communicated in the original brief: Species with dominant alleles are either AA or Aa.
+ *
+ * homoDom => AA
+ * hetroDom => Aa
+ * homoResc => aa
+ *
+ * P(hom + het | hom or het) = 1
+ *
+ *   |  A | a
+ *  -----------
+ * A | AA | Aa
+ * A | Aa | Aa
+ *
+ *
+ * P(het + het | hom or het) = 0.75
+ *
+ *   |  A | a
+ *  -----------
+ * A | AA | Aa
+ * a | Aa | aa
+ *
+ *
+ * P(het + rec | hom or het) = 0.5
+ *
+ *   |  a | a
+ *  -----------
+ * A | Aa | Aa
+ * a | aa | aa
+ *
  */
 class Mendel1 {
-  def getProbOfTrait(homoDom: Int, hetroDom: Int, homoResc: Int) = 0.78333
+  def getProbOfTrait(homoDom: Int, hetroDom: Int, homoResc: Int) = {
+    val tot = total(homoDom + hetroDom + homoResc)
 
+    1 - (recRec(homoResc) + (0.5 * hetRec(hetroDom, homoResc)) + (0.25 * hetHet(hetroDom))) / tot
+  }
+
+  def recRec(n: Int): Double = 1.0 * total(n)
+
+  def hetRec(het: Int, rec: Int): Int = het * rec
+
+  def hetHet(n: Int): Int = total(n)
+
+  def total(n: Int): Int = {
+    if (n == 2) 4
+    else 4 * (n - 1) + total(n - 1)
+  }
 }
