@@ -59,22 +59,14 @@ package rosalind.problem7
  * A | Aa | Aa
  * a | aa | aa
  *
+ *
  */
-class Mendel1 {
-  def getProbOfTrait(homoDom: Int, hetroDom: Int, homoResc: Int) = {
-    val tot = total(homoDom + hetroDom + homoResc)
+class Mendel1(k: Int, m: Int, n: Int) {
+  def getProbOfTrait = {
+    val tot = total
 
-    1 - (recRec(homoResc) + (0.5 * hetRec(hetroDom, homoResc)) + (0.25 * hetHet(hetroDom))) / tot
+    ((k*k - k) + 2*(k*m) + 2*(k*n) + (.75*(m*m - m)) + 2*(.5*m*n))/tot
   }
 
-  def recRec(n: Int): Double = 1.0 * total(n)
-
-  def hetRec(het: Int, rec: Int): Int = het * rec
-
-  def hetHet(n: Int): Int = total(n)
-
-  def total(n: Int): Int = {
-    if (n == 2) 4
-    else 4 * (n - 1) + total(n - 1)
-  }
+  def total: Int = (k + m + n)*(k + m + n -1)
 }
