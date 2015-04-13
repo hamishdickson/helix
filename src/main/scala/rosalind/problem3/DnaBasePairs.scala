@@ -20,3 +20,11 @@ class DnaBasePairs(s: String) {
     else 'C'
   }
 }
+
+object test extends App {
+  val s = "CCAGATC"
+
+  val dna = new DnaBasePairs(s)
+
+  println(dna.revComp)
+}
