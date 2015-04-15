@@ -22,7 +22,7 @@ class DnaBasePairs(s: String) {
 }
 
 object test extends App {
-  val s = "CCAGATC"
+  val s = "GCTAGCT"
 
   val dna = new DnaBasePairs(s)
 
