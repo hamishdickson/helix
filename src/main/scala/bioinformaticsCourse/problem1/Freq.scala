@@ -23,6 +23,7 @@ class Freq {
     def c(pos1: Int, max: Int, x: String): String = {
       if (pos1 + mers > len) x
       else if (timesInString(str.substring(pos1, pos1 + mers)) > max) c(pos1 + 1, timesInString(str.substring(pos1, pos1 + mers)), str.substring(pos1, pos1 + mers))
+      // **cough** code smell **cough**
       else if (timesInString(str.substring(pos1, pos1 + mers)) == max && !x.split(" ").contains(str.substring(pos1, pos1 + mers))) c(pos1 + 1, timesInString(str.substring(pos1, pos1 + mers)), x + " " + str.substring(pos1, pos1 + mers))
       else c(pos1 + 1, max, x)
     }
@@ -31,6 +32,7 @@ class Freq {
   }
 }
 
+// should be a unit test
 object test2 extends App {
   //val str = "CGCCTAAATAGCCTCGCGGAGCCTTATGCCATACTCGTCCT"
   val str = "ACGTTGCATGTCGCATGATGCATGAGAGCT"
