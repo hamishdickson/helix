@@ -7,13 +7,12 @@ package bioinformaticsCourse.problem1
  * rubbish didn't even read the question! this wants the most common 3-mer, not it's frequency
  */
 class Freq {
-  def merCounter(str: String, mers: Int): Int = {
+  def merCounter(str: String, mers: Int): String = {
     val len = str.length
 
     def timesInString(tester: String): Int = {
       def times(pos: Int, count: Int): Int = {
         if (pos + mers > len) count
-        //println(str.substring(pos, pos + mers) + "\t" + tester + "\t" + count + "\t" + pos + "\t" + mers)
         else if (str.substring(pos, pos + mers) == tester) times(pos + 1, count + 1)
         else times(pos + 1, count)
       }
@@ -21,21 +20,22 @@ class Freq {
       times(0, 0)
     }
 
-    def c(pos1: Int, max: Int): Int = {
-      if (pos1 + mers > len) max
-      else if (timesInString(str.substring(pos1, pos1 + mers)) > max) c(pos1 + 1, timesInString(str.substring(pos1, pos1 + mers)))
-      else c(pos1 + 1, max)
+    def c(pos1: Int, max: Int, x: String): String = {
+      if (pos1 + mers > len) x
+      else if (timesInString(str.substring(pos1, pos1 + mers)) > max) c(pos1 + 1, timesInString(str.substring(pos1, pos1 + mers)), str.substring(pos1, pos1 + mers))
+      else if (timesInString(str.substring(pos1, pos1 + mers)) == max && !x.split(" ").contains(str.substring(pos1, pos1 + mers))) c(pos1 + 1, timesInString(str.substring(pos1, pos1 + mers)), x + " " + str.substring(pos1, pos1 + mers))
+      else c(pos1 + 1, max, x)
     }
 
-    c(0, 0)
+    c(0, 0, "")
   }
 }
 
 object test2 extends App {
   //val str = "CGCCTAAATAGCCTCGCGGAGCCTTATGCCATACTCGTCCT"
-  val str = "ACAACTATGCATCACTATCGGGAACTATCCT"
+  val str = "ACGTTGCATGTCGCATGATGCATGAGAGCT"
 
   val freq = new Freq
 
-  println(freq.merCounter(str, 5))
+  println(freq.merCounter(str, 4))
 }
