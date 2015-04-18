@@ -15,6 +15,12 @@ class Positions {
 
     pis(str, "", 0)
   }
+
+  def usingPatternMatching(pat: String, str: List[Char]): Boolean = str match {
+    case Nil => false
+    case pat :: xs => true
+    case _ => false
+  }
 }
 
 object PositionTest extends App {
