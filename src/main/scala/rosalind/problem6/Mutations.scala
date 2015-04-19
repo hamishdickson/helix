@@ -28,3 +28,12 @@ class Mutations {
     hdc(nuc1, nuc2, 0)
   }
 }
+
+object HemmingRunner extends App {
+  val n1 = "CTACAGCAATACGATCATATGCGGATCCGCAGTGGCCGGTAGACACACGT"
+  val n2 = "CTACCCCGCTGCTCAATGACCGGGACTAAAGAGGCGAAGATTATGGTGTG"
+
+  val m = new Mutations
+
+  println(m.hemmingDistanceCounter(n1, n2))
+}
