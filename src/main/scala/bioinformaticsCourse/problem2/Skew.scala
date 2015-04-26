@@ -37,7 +37,7 @@ case class Skew(s: String) {
 }
 
 object SkewTester extends App {
-  val s = "CACTTATCTTGAACGTAA"
+  val s = "CATTCCAGTACTTCGATGATGGCGTGAAGA"
 
   println(Skew(s).getSkew)
   println(Skew(s).getMiniSkew)
