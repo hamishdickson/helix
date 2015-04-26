@@ -8,5 +8,7 @@ class Wabbits {
     }
 
     lit(months)
+
+    // "1234567"
   }
 }
