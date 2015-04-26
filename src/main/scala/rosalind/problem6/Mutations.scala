@@ -27,6 +27,16 @@ class Mutations {
 
     hdc(nuc1, nuc2, 0)
   }
+
+  def count(text: String, pattern: String, d: Int): Int = {
+    def aux(t: String, count: Int): Int = {
+      if (t.length < pattern.length) count
+      else if (hemmingDistanceCounter(pattern, t.substring(0, pattern.length)) <= d) aux(t.substring(1), count + 1)
+      else aux(t.substring(1), count)
+    }
+
+    aux(text, 0)
+  }
 }
 
 object HemmingRunner extends App {
@@ -36,4 +46,8 @@ object HemmingRunner extends App {
   val m = new Mutations
 
   println(m.hemmingDistanceCounter(n1, n2))
+
+  val n3 = "TACGCATTACAAAGCACA"
+  val n4 = "AA"
+  println(m.count(n3, n4, 1))
 }
