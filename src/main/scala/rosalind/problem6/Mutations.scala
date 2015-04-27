@@ -21,7 +21,7 @@ class Mutations {
         hdc(n1.substring(1), n2.substring(1), count)
       }
       else {
-        if (n1.length <= 1 || n2.length <= 1) return count + 1
+        if (n1.length < 1 || n2.length < 1) return count + 1
         hdc(n1.substring(1), n2.substring(1), count + 1)
       }
     }
@@ -40,13 +40,13 @@ class Mutations {
   }
 
   def dNeighbourhood(text: String, k: Int, d: Int): List[String] = {
-    def aux(pos: Int, c: Int, list: List[String]): List[String] = {
+    def aux(pos: Int, max: Int, list: List[String]): List[String] = {
       if (pos + k > text.length) list
       else {
         val e = count(text, text.substring(pos, pos + k), d)
-        if (e < c) aux(pos + 1, c, list)
-        else if (e == c) aux(pos + 1, c, text.substring(pos, pos + k) :: list)
-        else aux(pos + 1, d, List(text.substring(pos, pos + k)))
+        if (e < max) aux(pos + 1, max, list)
+        else if (e == max) aux(pos + 1, max, text.substring(pos, pos + k) :: list)
+        else aux(pos + 1, e, List(text.substring(pos, pos + k)))
       }
     }
 
@@ -73,15 +73,14 @@ object HemmingRunner extends App {
 
   println("Hemming distance: " + m.hemmingDistanceCounter(n1, n2))
 
-  val n3 = "CATGCCATTCGCATTGTCCCAGTGA"
-  val n4 = "CCC"
-  println("Count2: " + m.count(n3, n4, 2))
+  val n3 = "CACAGTAGGCGCCGGCACACACAGCCCCGGGCCCCGGGCCGCCCCGGGCCGGCGGCCGCCGGCGCCGGCACACCGGCACAGCCGTACCGGCACAGTAGTACCGGCCGGCCGGCACACCGGCACACCGGGTACACACCGGGGCGCACACACAGGCGGGCGCCGGGCCCCGGGCCGTACCGGGCCGCCGGCGGCCCACAGGCGCCGGCACAGTACCGGCACACACAGTAGCCCACACACAGGCGGGCGGTAGCCGGCGCACACACACACAGTAGGCGCACAGCCGCCCACACACACCGGCCGGCCGGCACAGGCGGGCGGGCGCACACACACCGGCACAGTAGTAGGCGGCCGGCGCACAGCC"
+  val n4 = "GCACACAGAC"
+  println("Count3: " + m.count(n3, n4, 2))
 
-  val t = "TAGC"
-  val k = 4
-  val d = 3
-
-  println(m.dNeighbourhood(t, k, d))
+  val t = "CACAGTAGGCGCCGGCACACACAGCCCCGGGCCCCGGGCCGCCCCGGGCCGGCGGCCGCCGGCGCCGGCACACCGGCACAGCCGTACCGGCACAGTAGTACCGGCCGGCCGGCACACCGGCACACCGGGTACACACCGGGGCGCACACACAGGCGGGCGCCGGGCCCCGGGCCGTACCGGGCCGCCGGCGGCCCACAGGCGCCGGCACAGTACCGGCACACACAGTAGCCCACACACAGGCGGGCGGTAGCCGGCGCACACACACACAGTAGGCGCACAGCCGCCCACACACACCGGCCGGCCGGCACAGGCGGGCGGGCGCACACACACCGGCACAGTAGTAGGCGGCCGGCGCACAGCC"
+  val k = 10
+  val d = 2
+  println("Neighbours: " + m.dNeighbourhood(t, k, d))
 
 
   val pat = "CATGTGAGCACG"
