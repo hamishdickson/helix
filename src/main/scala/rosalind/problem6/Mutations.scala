@@ -39,6 +39,11 @@ class Mutations {
     aux(text, 0)
   }
 
+
+  /**
+   * OK, so there is a problem with this - it only considers patterns that are in the in genone - not all possible
+   * mutations - need a generator to create those
+   */
   def dNeighbourhood(text: String, k: Int, d: Int): List[String] = {
     def aux(pos: Int, max: Int, list: List[String]): List[String] = {
       if (pos + k > text.length) list
@@ -52,6 +57,13 @@ class Mutations {
 
     aux(0, 0, List())
   }
+
+  /**
+   * first attempt - brute force it and generate everything
+   *
+   * even on the face of it this doesn't sound right - you only care about stuff that's within a certain distance of
+   * what's in your string
+   */
 
 
   def matching(text: String, pattern: String, d: Int): List[Int] = {
