@@ -1,11 +1,5 @@
 package bioinformaticsCourse.problem1
 
-/**
- * Created by hamishdickson on 13/04/15.
- *
- *
- * rubbish didn't even read the question! this wants the most common 3-mer, not it's frequency
- */
 class Freq {
   def merCounter(str: String, mers: Int): String = {
     val len = str.length

@@ -1,8 +1,5 @@
 package bioinformaticsCourse.problem1
 
-/**
- * Created by hamishdickson on 13/04/15.
- */
 class Counter {
 
   def count(text: String, pattern: String): Int = {

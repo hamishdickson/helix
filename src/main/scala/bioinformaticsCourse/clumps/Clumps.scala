@@ -1,12 +1,6 @@
 package bioinformaticsCourse.clumps
 
-/**
- * Created by hamishdickson on 19/04/15.
- */
 class Clumps {
-/*  def findClumps(genome: String, k: Int, L: Int, t: Int): String = {
-
-  }*/
 }
 
 object ClumpTest extends App {

@@ -2,9 +2,6 @@ package rosalind.problem6
 
 import org.scalatest.{FlatSpec, Matchers}
 
-/**
- * Created by hamishdickson on 07/04/15.
- */
 class MutationsTest  extends FlatSpec with Matchers {
   "A hemmingDistanceCounter" should "calculate the Hemming distance of 7 for the mutation" in {
     val mut = new Mutations

@@ -1,10 +1,5 @@
 package bioinformaticsCourse.problem2
 
-/**
- * Created by hamishdickson on 16/04/15.
- *
- * todo refactor this so that you don't pass s anymore
- */
 class Positions {
   def patInStr(pat: String, str: String): String = {
     def pis(s: String, m: String, index: Int): String = {
