@@ -23,4 +23,7 @@ class DnaNucleotides(nucleotides: String) {
   }
 
   val nucsAsList: List[Char] = nucleotides.toList
+
+  // maybe?
+  def count3(nuc: Char): Int = nucsAsList.foldRight(0)((a, b) => if (a==nuc) 1 + b else b)
 }
