@@ -16,5 +16,10 @@ class DnaNucleotidesTest extends FlatSpec with Matchers {
     counter.count('C') should be (12)
     counter.count('G') should be (17)
     counter.count('T') should be (21)
+
+    counter.count3('A') should be (20)
+    counter.count3('C') should be (12)
+    counter.count3('G') should be (17)
+    counter.count3('T') should be (21)
   }
 }

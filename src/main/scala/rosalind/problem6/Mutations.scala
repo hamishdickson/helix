@@ -64,9 +64,9 @@ class Mutations {
    * even on the face of it this doesn't sound right - you only care about stuff that's within a certain distance of
    * what's in your string
    */
-  def generator(k: Int): List[String] = {
+/*  def generator(k: Int): List[String] = {
 
-  }
+  }*/
 
 
   def matching(text: String, pattern: String, d: Int): List[Int] = {

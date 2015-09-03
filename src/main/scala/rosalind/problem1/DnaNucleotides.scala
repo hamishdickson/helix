@@ -13,17 +13,7 @@ package rosalind.problem1
 class DnaNucleotides(nucleotides: String) {
   def count(nuc: Char) = nucleotides.count(_ == nuc)
 
-  def count2(nuc: Char): Int = {
-   def loop(c: List[Char]): Int = c match {
-      case Nil => 0
-      case x :: xs => if (x == nuc) 1 + loop(xs) else loop(xs)
-    }
-
-    loop(nucsAsList)
-  }
-
   val nucsAsList: List[Char] = nucleotides.toList
 
-  // maybe?
   def count3(nuc: Char): Int = nucsAsList.foldRight(0)((a, b) => if (a==nuc) 1 + b else b)
 }
