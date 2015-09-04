@@ -1,11 +1,8 @@
 package rosalind.problem1
 
 import org.scalatest._
+import rosalind.Dna.Genome
 
-/**
- * Created by hamishdickson on 30/03/15.
- *
- */
 class DnaNucleotidesTest extends FlatSpec with Matchers {
   "A dna counter" should "return the correct number of nucleotides" in {
     val dnaString: String = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
@@ -21,5 +18,7 @@ class DnaNucleotidesTest extends FlatSpec with Matchers {
     counter.count3('C') should be (12)
     counter.count3('G') should be (17)
     counter.count3('T') should be (21)
+
+    val genoneList: List[Genome] = dnaString.toList.map(g => Genome(g))
   }
 }
