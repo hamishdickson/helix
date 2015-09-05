@@ -1,6 +1,8 @@
 package rosalind.problem3
 
 /**
+ * defunct - do not use.
+ *
  * Created by hamishdickson on 31/03/15.
  *
  * In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.
