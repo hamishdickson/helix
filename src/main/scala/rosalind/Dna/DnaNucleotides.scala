@@ -44,11 +44,11 @@ case class DnaNucleotides(nucleotides: List[Genome]) extends Dna {
    * Given: A DNA string s of length at most 1000 bp.
    * Return: The reverse complement sc of s.
    */
-  def reverseComplementer: DnaNucleotides = new DnaNucleotides(nucleotides.reverse map {
+  def reverseComplementer: DnaNucleotides = DnaNucleotides(nucleotides.reverse map {
     case GenomeA => GenomeT
     case GenomeT => GenomeA
     case GenomeC => GenomeG
-    case _ => GenomeC
+    case GenomeG => GenomeC
   })
 }
 
