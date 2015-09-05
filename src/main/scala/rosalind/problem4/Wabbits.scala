@@ -27,6 +27,8 @@ import scala.annotation.tailrec
  */
 class Wabbits {
   def litter(months: BigInt, litterSize: BigInt): BigInt = {
+
+    // fluffy tail recursive
     @tailrec
     def lit(count: BigInt, a: BigInt, b: BigInt): BigInt = {
       if (count <= 0) a
