@@ -1,6 +1,8 @@
 package rosalind.problem2
 
 /**
+ * depreciated
+ *
  * Created by hamishdickson on 30/03/15.
  *
  * An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.

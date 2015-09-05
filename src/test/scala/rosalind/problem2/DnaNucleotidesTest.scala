@@ -5,6 +5,7 @@ import org.scalatest.{Matchers, FlatSpec}
 /**
  * Created by hamishdickson on 30/03/15.
  *
+ * depreciated
  */
 class DnaNucleotidesTest extends FlatSpec with Matchers {
   "An rna converter" should "be able to convert dna to rna" in {

@@ -1,6 +1,8 @@
 package rosalind.Dna
 
 case class DnaNucleotides(nucleotides: List[Genome]) {
+  def this(s: String) = this(s.toList.map(g => Genome(g)))
+
   /**
    * A string is simply an ordered collection of symbols selected from some alphabet and formed into a word; the length
    * of a string is the number of symbols that it contains.
@@ -23,4 +25,14 @@ case class DnaNucleotides(nucleotides: List[Genome]) {
    * Return: The transcribed RNA string of t.
    */
   def convert: List[Genome] = nucleotides.map(g => if (g == Genome('T')) Genome('U') else g)
+
+  /**
+   * In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.
+   *
+   * The reverse complement of a DNA string s is the string sc formed by reversing the symbols of s, then taking the
+   * complement of each symbol (e.g., the reverse complement of "GTCA" is "TGAC").
+   *
+   * Given: A DNA string s of length at most 1000 bp.
+   * Return: The reverse complement sc of s.
+   */
 }
