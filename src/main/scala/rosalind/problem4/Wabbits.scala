@@ -1,8 +1,8 @@
 package rosalind.problem4
 
+import scala.annotation.tailrec
+
 /**
- * Created by hamishdickson on 02/04/15.
- *
  * A sequence is an ordered collection of objects (usually numbers), which are allowed to repeat. Sequences can be
  * finite or infinite. Two examples are the finite sequence (π,−2‾√,0,π) and the infinite sequence of odd numbers
  * (1,3,5,7,9,…). We use the notation an to represent the n-th term of a sequence.
@@ -27,13 +27,12 @@ package rosalind.problem4
  */
 class Wabbits {
   def litter(months: BigInt, litterSize: BigInt): BigInt = {
-    def lit(count: BigInt): BigInt = {
-      if (count <= 2) 1
-      else lit(count - 1) + litterSize * lit(count - 2)
+    @tailrec
+    def lit(count: BigInt, a: BigInt, b: BigInt): BigInt = {
+      if (count <= 0) a
+      else lit(count - 1, b, litterSize*a + b)
     }
 
-    lit(months)
+    lit(months, 0, 1)
   }
-
-
 }
