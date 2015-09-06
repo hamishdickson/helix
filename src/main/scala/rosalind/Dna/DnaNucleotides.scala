@@ -19,6 +19,7 @@ case class DnaNucleotides(nucleotides: List[Genome]) extends Dna {
    */
   def count(genome: Genome): Int = nucleotides.foldRight(0)((a, b) => if (a == genome) 1 + b else b)
 
+
   /**
    * An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.
    *
@@ -34,6 +35,7 @@ case class DnaNucleotides(nucleotides: List[Genome]) extends Dna {
     case GenomeG => RnaGenomeG
     case GenomeT => RnaGenomeU
   })
+
 
   /**
    * In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.
@@ -74,6 +76,7 @@ case class DnaNucleotides(nucleotides: List[Genome]) extends Dna {
     100 * count / nucleotides.length
   }
 
+
   /**
    * Given two strings s and t of equal length, the Hamming distance between s and t, denoted dH(s,t), is the number of
    * corresponding symbols that differ in s and t. See Figure 2.
@@ -83,10 +86,16 @@ case class DnaNucleotides(nucleotides: List[Genome]) extends Dna {
    *
    * Implementation: l zip k gives you a list like (l1, k1), (l2, k2)... then foldRight to compare the tuple elements
    */
-  def dH(t: DnaNucleotides): Int = {
+  def hemmingDistance(t: DnaNucleotides): Int = {
     val z: List[(Genome, Genome)] = nucleotides zip t.nucleotides
 
     z.foldRight(0)((a, b) => if (a._1 == a._2) b else 1 + b)
+  }
+
+  def getProbOfTrait(k: Int, m: Int, n: Int): Double = {
+    val tot: Int = (k + m + n)*(k + m + n -1)
+    
+    ((k*k - k) + 2*(k*m) + 2*(k*n) + (.75*(m*m - m)) + 2*(.5*m*n))/tot
   }
 }
 

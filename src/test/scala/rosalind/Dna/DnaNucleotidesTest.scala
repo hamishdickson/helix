@@ -37,6 +37,6 @@ class DnaNucleotidesTest extends FlatSpec with Matchers {
     val s: DnaNucleotides = Dna("GAGCCTACTAACGGGAT")
     val t: DnaNucleotides = Dna("CATCGTAATGACGGCCT")
 
-    s.dH(t) should be (7)
+    s.hemmingDistance(t) should be (7)
   }
 }
