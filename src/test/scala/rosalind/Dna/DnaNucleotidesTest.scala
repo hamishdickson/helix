@@ -1,7 +1,6 @@
 package rosalind.Dna
 
 import org.scalatest.{Matchers, FlatSpec}
-import rosalind.problem6.Mutations
 
 class DnaNucleotidesTest extends FlatSpec with Matchers {
   "A dna counter" should "return the correct number of nucleotides" in {
@@ -38,5 +37,15 @@ class DnaNucleotidesTest extends FlatSpec with Matchers {
     val t: DnaNucleotides = Dna("CATCGTAATGACGGCCT")
 
     s.hemmingDistance(t) should be (7)
+  }
+
+  "Given any two from the given set of k, m, n organisims mating, the function" should "output the prob their offspring with be dominant in the trait" in {
+    val homozygousDominantPopulation = 2 // Yy
+    val heterozygousDominantPopulation = 2 // yy
+    val homozygousrecessivePopulation = 2 // er ...?
+
+    val p: Double = Dna.getProbOfTrait(homozygousDominantPopulation, heterozygousDominantPopulation, homozygousrecessivePopulation)
+
+    p should be (0.78333 +- 0.0001)
   }
 }

@@ -91,14 +91,14 @@ case class DnaNucleotides(nucleotides: List[Genome]) extends Dna {
 
     z.foldRight(0)((a, b) => if (a._1 == a._2) b else 1 + b)
   }
-
-  def getProbOfTrait(k: Int, m: Int, n: Int): Double = {
-    val tot: Int = (k + m + n)*(k + m + n -1)
-    
-    ((k*k - k) + 2*(k*m) + 2*(k*n) + (.75*(m*m - m)) + 2*(.5*m*n))/tot
-  }
 }
 
 object Dna {
   def apply(s: String): DnaNucleotides = DnaNucleotides(s.toList.map(g => Genome(g)))
+
+  def getProbOfTrait(k: Int, m: Int, n: Int): Double = {
+    val tot: Int = (k + m + n)*(k + m + n -1)
+
+    ((k*k - k) + 2*(k*m) + 2*(k*n) + (.75*(m*m - m)) + 2*(.5*m*n))/tot
+  }
 }
