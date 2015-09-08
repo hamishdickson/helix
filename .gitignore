@@ -50,3 +50,5 @@ crashlytics.properties
 crashlytics-build.properties
 
 
+.ensime
+.ensime_cache/
