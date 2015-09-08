@@ -6,8 +6,8 @@ package rosalind.Dna
 
 trait Rna
 
-case class RnaNucleotides(nucleotides: List[RnaGenome]) extends Rna
+case class RnaGenome(nucleotides: List[RnaNucleotide]) extends Rna
 
 object Rna {
-  def apply(s: String): RnaNucleotides = RnaNucleotides(s.toList.map(g => RnaGenome(g)))
+  def apply(s: String): RnaGenome = RnaGenome(s.toList.map(g => RnaNucleotide(g)))
 }
