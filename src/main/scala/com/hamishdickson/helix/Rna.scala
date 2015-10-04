@@ -1,4 +1,6 @@
-package rosalind.Dna
+package com.hamishdickson.helix
+
+import com.hamishdickson.helix.RnaNucleotide
 
 /**
  * This probably needs renaming after I spend a day on wikipedia

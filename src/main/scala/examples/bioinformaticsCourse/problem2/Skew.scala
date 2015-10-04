@@ -1,4 +1,4 @@
-package bioinformaticsCourse.problem2
+package examples.bioinformaticsCourse.problem2
 
 import scala.annotation.tailrec
 

@@ -1,4 +1,4 @@
-package rosalind.problem4
+package examples.rosalind.problem4
 
 import scala.annotation.tailrec
 

@@ -1,6 +1,6 @@
-package rosalind.Dna
+package com.hamishdickson.helix
 
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 class GenomeTest extends FlatSpec with Matchers {
   "A dna counter" should "return the correct number of nucleotides" in {

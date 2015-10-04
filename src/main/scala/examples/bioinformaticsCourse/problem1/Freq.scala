@@ -1,4 +1,4 @@
-package bioinformaticsCourse.problem1
+package examples.bioinformaticsCourse.problem1
 
 class Freq {
   def merCounter(str: String, mers: Int): String = {

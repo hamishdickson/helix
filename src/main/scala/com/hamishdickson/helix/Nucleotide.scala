@@ -1,4 +1,4 @@
-package rosalind.Dna
+package com.hamishdickson.helix
 
 sealed trait Nucleotide
 

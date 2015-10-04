@@ -1,4 +1,4 @@
-package dungeon
+package com.hamishdickson.helix.dungeon
 
 import scala.io.Source
 

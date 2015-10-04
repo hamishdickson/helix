@@ -1,4 +1,4 @@
-package bioinformaticsCourse.problem2
+package examples.bioinformaticsCourse.problem2
 
 class Positions {
   def patInStr(pat: String, str: String): String = {

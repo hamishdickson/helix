@@ -1,4 +1,4 @@
-package rosalind.Dna
+package com.hamishdickson.helix
 
 /**
  * FIXME - I don't think Genome is the right word here, talk to a biologist at some point (or wikipedia...)
