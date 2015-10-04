@@ -7,6 +7,6 @@ import scala.io.Source
  */
 object FileReader {
   def getStringFromFile(f: String): String = {
-    Source.fromFile(f).toString
+    Source.fromFile(f).getLines.mkString
   }
 }
