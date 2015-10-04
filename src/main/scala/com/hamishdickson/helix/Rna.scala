@@ -5,7 +5,7 @@ import com.hamishdickson.helix.protein.Protein
 trait Rna
 
 case class RnaGenome(nucleotides: List[RnaNucleotide]) extends Rna {
-  def toProteinList: List[Protein] = ???
+  def toProteinList: List[Protein] = List()
 }
 
 object Rna {
