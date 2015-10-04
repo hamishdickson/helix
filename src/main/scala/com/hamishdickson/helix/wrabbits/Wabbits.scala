@@ -1,4 +1,4 @@
-package examples.rosalind.problem4
+package com.hamishdickson.helix.wrabbits
 
 import scala.annotation.tailrec
 
