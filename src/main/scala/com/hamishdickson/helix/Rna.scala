@@ -1,14 +1,12 @@
 package com.hamishdickson.helix
 
-import com.hamishdickson.helix.RnaNucleotide
-
-/**
- * This probably needs renaming after I spend a day on wikipedia
- */
+import com.hamishdickson.helix.protein.Protein
 
 trait Rna
 
-case class RnaGenome(nucleotides: List[RnaNucleotide]) extends Rna
+case class RnaGenome(nucleotides: List[RnaNucleotide]) extends Rna {
+  def toProteinList: List[Protein] = ???
+}
 
 object Rna {
   def apply(s: String): RnaGenome = RnaGenome(s.toList.map(g => RnaNucleotide(g)))
