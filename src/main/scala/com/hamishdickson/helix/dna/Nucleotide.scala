@@ -1,4 +1,4 @@
-package com.hamishdickson.helix
+package com.hamishdickson.helix.dna
 
 sealed trait Nucleotide
 

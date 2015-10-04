@@ -1,5 +1,6 @@
-package com.hamishdickson.helix
+package com.hamishdickson.helix.dna
 
+import com.hamishdickson.helix.rna.Rna
 import org.scalatest.{FlatSpec, Matchers}
 
 class GenomeTest extends FlatSpec with Matchers {

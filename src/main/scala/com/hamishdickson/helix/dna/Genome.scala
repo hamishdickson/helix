@@ -1,4 +1,6 @@
-package com.hamishdickson.helix
+package com.hamishdickson.helix.dna
+
+import com.hamishdickson.helix.rna._
 
 trait Dna
 

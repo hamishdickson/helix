@@ -1,4 +1,4 @@
-package com.hamishdickson.helix
+package com.hamishdickson.helix.rna
 
 sealed trait RnaNucleotide
 
