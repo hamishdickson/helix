@@ -1,4 +1,4 @@
-name := "bioinformatics"
+name := "helix"
 
 version := "1.0"
 
