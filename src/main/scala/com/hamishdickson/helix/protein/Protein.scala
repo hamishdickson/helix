@@ -22,6 +22,7 @@ case object ProteinT extends Protein
 case object ProteinV extends Protein
 case object ProteinW extends Protein
 case object ProteinY extends Protein
+case object Stop extends Protein
 
 object Protein {
   // I guess this could be nicer
