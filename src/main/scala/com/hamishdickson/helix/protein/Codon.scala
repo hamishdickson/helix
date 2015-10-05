@@ -1,9 +1,5 @@
 package com.hamishdickson.helix.protein
 
-/**
- * refactor - there has to be a better way to go about this..
- */
-
 trait Codon
 
 case object UUU extends Codon
@@ -72,6 +68,73 @@ case object GGA extends Codon
 case object GGG extends Codon
 
 object Codon {
+  def apply(c: List[Char]) = c match {
+    case List('U','U','U') => UUU
+    case List('U','U','C') => UUC
+    case List('U','U','A') => UUA
+    case List('U','U','G') => UUG
+    case List('U','C','U') => UCU
+    case List('U','C','C') => UCC
+    case List('U','C','A') => UCA
+    case List('U','C','G') => UCG
+    case List('U','A','U') => UAU
+    case List('U','A','C') => UAC
+    case List('U','A','A') => UAA
+    case List('U','A','G') => UAG
+    case List('U','G','U') => UGU
+    case List('U','G','C') => UGC
+    case List('U','G','A') => UGA
+    case List('U','G','G') => UGG
+    case List('C','U','U') => CUU
+    case List('C','U','C') => CUC
+    case List('C','U','A') => CUA
+    case List('C','U','G') => CUG
+    case List('C','C','U') => CCU
+    case List('C','C','C') => CCC
+    case List('C','C','A') => CCA
+    case List('C','C','G') => CCG
+    case List('C','A','U') => CAU
+    case List('C','A','C') => CAC
+    case List('C','A','A') => CAA
+    case List('C','A','G') => CAG
+    case List('C','G','U') => CGU
+    case List('C','G','C') => CGC
+    case List('C','G','A') => CGA
+    case List('C','G','G') => CGG
+    case List('A','U','U') => AUU
+    case List('A','U','C') => AUC
+    case List('A','U','A') => AUA
+    case List('A','U','G') => AUG
+    case List('A','C','U') => ACU
+    case List('A','C','C') => ACC
+    case List('A','C','A') => ACA
+    case List('A','C','G') => ACG
+    case List('A','A','U') => AAU
+    case List('A','A','C') => AAC
+    case List('A','A','A') => AAA
+    case List('A','A','G') => AAG
+    case List('A','G','U') => AGU
+    case List('A','G','C') => AGC
+    case List('A','G','A') => AGA
+    case List('A','G','G') => AGG
+    case List('G','U','U') => GUU
+    case List('G','U','C') => GUC
+    case List('G','U','A') => GUA
+    case List('G','U','G') => GUG
+    case List('G','C','U') => GCU
+    case List('G','C','C') => GCC
+    case List('G','C','A') => GCA
+    case List('G','C','G') => GCG
+    case List('G','A','U') => GAU
+    case List('G','A','C') => GAC
+    case List('G','A','A') => GAA
+    case List('G','A','G') => GAG
+    case List('G','G','U') => GGU
+    case List('G','G','C') => GGC
+    case List('G','G','A') => GGA
+    case List('G','G','G') => GGG
+  }
+
   def toProtein(c: Codon): Protein = c match {
     case UUU => ProteinF
     case UUC => ProteinF
