@@ -25,7 +25,6 @@ case object ProteinY extends Protein
 case object Stop extends Protein
 
 object Protein {
-  // I guess this could be nicer
   def proteinString(s: String): List[Protein] = s.toList.map(p => Protein(p))
 
   def apply(c: Char) = c match {

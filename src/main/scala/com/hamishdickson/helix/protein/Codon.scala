@@ -68,7 +68,23 @@ case object GGA extends Codon
 case object GGG extends Codon
 
 object Codon {
-  def apply(c: List[Char]) = c match {
+  def toProteinList(s: String): List[Protein] = {
+    def loop(d: String, ds: List[Protein]): List[Protein] = {
+      if (d.length < 3) ds
+      else {
+        val f: String = d.substring(0, 3)
+        val g: Codon = Codon(f.toList)
+        val h: Protein = Codon.toProtein(g)
+
+        if (h == Stop) ds
+        else loop(d.substring(3), h :: ds)
+      }
+    }
+
+    loop(s, List()).reverse
+  }
+
+  def apply(cx: List[Char]) = cx match {
     case List('U','U','U') => UUU
     case List('U','U','C') => UUC
     case List('U','U','A') => UUA
