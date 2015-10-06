@@ -69,19 +69,18 @@ case object GGG extends Codon
 
 object Codon {
   def toProteinList(s: String): List[Protein] = {
-    def loop(d: String, ds: List[Protein]): List[Protein] = {
-      if (d.length < 3) ds
-      else {
-        val f: String = d.substring(0, 3)
-        val g: Codon = Codon(f.toList)
-        val h: Protein = Codon.toProtein(g)
+    def loop(d: List[Char], ds: List[Protein]): List[Protein] = d match {
+      case a :: b :: c :: tail => {
+        val codon: Codon = Codon(List(a, b, c))
+        val p: Protein = Codon.toProtein(codon)
 
-        if (h == Stop) ds
-        else loop(d.substring(3), h :: ds)
+        if (p == Stop) ds
+        else loop(tail, p :: ds)
       }
+      case _ => ds
     }
 
-    loop(s, List()).reverse
+    loop(s.toList, List()).reverse
   }
 
   def apply(cx: List[Char]) = cx match {
