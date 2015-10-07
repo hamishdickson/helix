@@ -1,11 +1,12 @@
 package com.hamishdickson.helix.protein
 
 import com.hamishdickson.helix.dna.{MRnaGenome, MRna}
+import com.hamishdickson.helix.rna.{RnaNucleotide, RnaNucleotideU}
 import org.scalatest.{Matchers, FlatSpec}
 
 class CodonTest extends FlatSpec with Matchers {
   "The Codon apply method" should "turn a list into a Codon" in {
-    val c: List[Char] = List('U','U','U')
+    val c: List[RnaNucleotide] = List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideU)
 
     Codon(c) should be (UUU)
   }
@@ -28,7 +29,7 @@ class CodonTest extends FlatSpec with Matchers {
     val r: String = "MAMAPRTEINSTRING"
 
     val ps: List[Protein] = mRnaGenome.toProteinList
-    
+
     Protein.toStringFromList(ps) should be (r)
   }
 }

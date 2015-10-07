@@ -1,11 +1,6 @@
 package com.hamishdickson.helix.protein
 
-import com.hamishdickson.helix.dna.{NucleotideA, NucleotideG, NucleotideC, Nucleotide}
 import com.hamishdickson.helix.rna._
-
-/**
- * FIXME - this abstraction feels wrong - work out what things should be called and rename
- */
 
 trait Codon
 
@@ -75,93 +70,7 @@ case object GGA extends Codon
 case object GGG extends Codon
 
 object Codon {
-
-  def toProteinList(mRna: List[Char]): List[Protein] = {
-    /**
-     * Note: there might be a nicer approach to this using lazyness
-     */
-    def loop(m: List[Char], ds: List[Protein]): List[Protein] = m match {
-      case i :: j :: k :: tail => {
-        val c: Codon = Codon(List(i, j, k))
-        val p: Protein = Codon.toProtein(c)
-
-        if (p == Stop) ds
-        else loop(tail, p :: ds)
-      }
-      case _ => ds
-    }
-
-    loop(mRna, List()).reverse
-  }
-
-  def apply(cx: List[Char]) = cx match {
-    case List('U','U','U') => UUU
-    case List('U','U','C') => UUC
-    case List('U','U','A') => UUA
-    case List('U','U','G') => UUG
-    case List('U','C','U') => UCU
-    case List('U','C','C') => UCC
-    case List('U','C','A') => UCA
-    case List('U','C','G') => UCG
-    case List('U','A','U') => UAU
-    case List('U','A','C') => UAC
-    case List('U','A','A') => UAA
-    case List('U','A','G') => UAG
-    case List('U','G','U') => UGU
-    case List('U','G','C') => UGC
-    case List('U','G','A') => UGA
-    case List('U','G','G') => UGG
-    case List('C','U','U') => CUU
-    case List('C','U','C') => CUC
-    case List('C','U','A') => CUA
-    case List('C','U','G') => CUG
-    case List('C','C','U') => CCU
-    case List('C','C','C') => CCC
-    case List('C','C','A') => CCA
-    case List('C','C','G') => CCG
-    case List('C','A','U') => CAU
-    case List('C','A','C') => CAC
-    case List('C','A','A') => CAA
-    case List('C','A','G') => CAG
-    case List('C','G','U') => CGU
-    case List('C','G','C') => CGC
-    case List('C','G','A') => CGA
-    case List('C','G','G') => CGG
-    case List('A','U','U') => AUU
-    case List('A','U','C') => AUC
-    case List('A','U','A') => AUA
-    case List('A','U','G') => AUG
-    case List('A','C','U') => ACU
-    case List('A','C','C') => ACC
-    case List('A','C','A') => ACA
-    case List('A','C','G') => ACG
-    case List('A','A','U') => AAU
-    case List('A','A','C') => AAC
-    case List('A','A','A') => AAA
-    case List('A','A','G') => AAG
-    case List('A','G','U') => AGU
-    case List('A','G','C') => AGC
-    case List('A','G','A') => AGA
-    case List('A','G','G') => AGG
-    case List('G','U','U') => GUU
-    case List('G','U','C') => GUC
-    case List('G','U','A') => GUA
-    case List('G','U','G') => GUG
-    case List('G','C','U') => GCU
-    case List('G','C','C') => GCC
-    case List('G','C','A') => GCA
-    case List('G','C','G') => GCG
-    case List('G','A','U') => GAU
-    case List('G','A','C') => GAC
-    case List('G','A','A') => GAA
-    case List('G','A','G') => GAG
-    case List('G','G','U') => GGU
-    case List('G','G','C') => GGC
-    case List('G','G','A') => GGA
-    case List('G','G','G') => GGG
-  }
-
-  def mRnaToCodon(m: List[RnaNucleotide]) = m match {
+  def apply(m: List[RnaNucleotide]) = m match {
     case List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideU) => UUU
     case List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideC) => UUC
     case List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideA) => UUA

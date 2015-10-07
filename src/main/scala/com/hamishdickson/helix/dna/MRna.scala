@@ -9,7 +9,7 @@ case class MRnaGenome(nucleotides: List[RnaNucleotide]) extends MRna {
   def toProteinList: List[Protein] = {
     def loop(r: List[RnaNucleotide], ds: List[Protein]): List[Protein] = r match {
       case i :: j :: k :: tail => {
-        val c: Codon = Codon.mRnaToCodon(List(i, j, k))
+        val c: Codon = Codon(List(i, j, k))
         val p: Protein = Codon.toProtein(c)
 
         if (p == Stop) ds
