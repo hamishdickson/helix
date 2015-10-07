@@ -1,7 +1,6 @@
 package com.hamishdickson.helix.protein
 
-import com.hamishdickson.helix.dna.{MRnaGenome, MRna}
-import com.hamishdickson.helix.rna.{RnaNucleotide, RnaNucleotideU}
+import com.hamishdickson.helix.rna.{MRna, MRnaGenome, RnaNucleotide, RnaNucleotideU}
 import org.scalatest.{Matchers, FlatSpec}
 
 class CodonTest extends FlatSpec with Matchers {
@@ -14,12 +13,12 @@ class CodonTest extends FlatSpec with Matchers {
   "The toProtein method" should "take a codon and return a protein" in {
     val c: Codon = UUU
 
-    Codon.toProtein(c) should be (ProteinF)
+    c.toProtein should be (ProteinF)
   }
 
   "The toProteinList method" should "take a mRNA string and return a protein list" in {
     val mRnaGenome: MRnaGenome = MRna("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA")
-    val p: List[Protein] = Protein.proteinString("MAMAPRTEINSTRING")
+    val p: ProteinChain = ProteinRope("MAMAPRTEINSTRING")
 
     mRnaGenome.toProteinList should be (p)
   }
@@ -28,8 +27,8 @@ class CodonTest extends FlatSpec with Matchers {
     val mRnaGenome: MRnaGenome = MRna("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA")
     val r: String = "MAMAPRTEINSTRING"
 
-    val ps: List[Protein] = mRnaGenome.toProteinList
+    val ps: ProteinChain = mRnaGenome.toProteinList
 
-    Protein.toStringFromList(ps) should be (r)
+    ps.toString should be (r)
   }
 }

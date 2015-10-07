@@ -1,6 +1,6 @@
 # Helix
 
-A bioinformatics library written in scala.
+A purely functional bioinformatics library written in scala.
 
 [![Build Status](https://travis-ci.org/hamishdickson/bioinformatics.svg?branch=master)](https://travis-ci.org/hamishdickson/bioinformatics)
 

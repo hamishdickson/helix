@@ -2,7 +2,78 @@ package com.hamishdickson.helix.protein
 
 import com.hamishdickson.helix.rna._
 
-trait Codon
+/**
+ * I'm pretty convinced there is just no nice way to do this.
+ */
+
+trait Codon {
+  def toProtein: Protein = this match {
+    case UUU => ProteinF
+    case UUC => ProteinF
+    case UUA => ProteinL
+    case UUG => ProteinL
+    case UCU => ProteinS
+    case UCC => ProteinS
+    case UCA => ProteinS
+    case UCG => ProteinS
+    case UAU => ProteinY
+    case UAC => ProteinY
+    case UAA => Stop
+    case UAG => Stop
+    case UGU => ProteinC
+    case UGC => ProteinC
+    case UGA => Stop
+    case UGG => ProteinW
+    case CUU => ProteinL
+    case CUC => ProteinL
+    case CUA => ProteinL
+    case CUG => ProteinL
+    case CCU => ProteinP
+    case CCC => ProteinP
+    case CCA => ProteinP
+    case CCG => ProteinP
+    case CAU => ProteinH
+    case CAC => ProteinH
+    case CAA => ProteinQ
+    case CAG => ProteinQ
+    case CGU => ProteinR
+    case CGC => ProteinR
+    case CGA => ProteinR
+    case CGG => ProteinR
+    case AUU => ProteinI
+    case AUC => ProteinI
+    case AUA => ProteinI
+    case AUG => ProteinM
+    case ACU => ProteinT
+    case ACC => ProteinT
+    case ACA => ProteinT
+    case ACG => ProteinT
+    case AAU => ProteinN
+    case AAC => ProteinN
+    case AAA => ProteinK
+    case AAG => ProteinK
+    case AGU => ProteinS
+    case AGC => ProteinS
+    case AGA => ProteinR
+    case AGG => ProteinR
+    case GUU => ProteinV
+    case GUC => ProteinV
+    case GUA => ProteinV
+    case GUG => ProteinV
+    case GCU => ProteinA
+    case GCC => ProteinA
+    case GCA => ProteinA
+    case GCG => ProteinA
+    case GAU => ProteinD
+    case GAC => ProteinD
+    case GAA => ProteinE
+    case GAG => ProteinE
+    case GGU => ProteinG
+    case GGC => ProteinG
+    case GGA => ProteinG
+    case GGG => ProteinG
+  }
+}
 
 case object UUU extends Codon
 case object UUC extends Codon
@@ -137,7 +208,7 @@ object Codon {
     case List(RnaNucleotideG, RnaNucleotideG, RnaNucleotideG) => GGG
   }
 
-  def toProtein(c: Codon): Protein = c match {
+/*  def toProtein(c: Codon): Protein = c match {
     case UUU => ProteinF
     case UUC => ProteinF
     case UUA => ProteinL
@@ -202,5 +273,5 @@ object Codon {
     case GGC => ProteinG
     case GGA => ProteinG
     case GGG => ProteinG
-  }
+  }*/
 }

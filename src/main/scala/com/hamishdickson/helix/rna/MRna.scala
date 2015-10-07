@@ -1,16 +1,18 @@
-package com.hamishdickson.helix.dna
+package com.hamishdickson.helix.rna
 
-import com.hamishdickson.helix.protein.{Stop, Codon, Protein}
-import com.hamishdickson.helix.rna.RnaNucleotide
+import com.hamishdickson.helix.protein.{ProteinChain, Codon, Protein, Stop}
+
+import scala.annotation.tailrec
 
 trait MRna
 
 case class MRnaGenome(nucleotides: List[RnaNucleotide]) extends MRna {
-  def toProteinList: List[Protein] = {
+  def toProteinList: ProteinChain = {
+    @tailrec
     def loop(r: List[RnaNucleotide], ds: List[Protein]): List[Protein] = r match {
       case i :: j :: k :: tail => {
         val c: Codon = Codon(List(i, j, k))
-        val p: Protein = Codon.toProtein(c)
+        val p: Protein = c.toProtein
 
         if (p == Stop) ds
         else loop(tail, p :: ds)
@@ -18,7 +20,7 @@ case class MRnaGenome(nucleotides: List[RnaNucleotide]) extends MRna {
       case _ => ds
     }
 
-    loop(nucleotides, List()).reverse
+    ProteinChain(loop(nucleotides, List()).reverse)
   }
 }
 
