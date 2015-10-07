@@ -1,6 +1,6 @@
 package com.hamishdickson.helix.protein
 
-import com.hamishdickson.helix.rna.{Rna, RnaGenome}
+import com.hamishdickson.helix.dna.{MRnaGenome, MRna}
 import org.scalatest.{Matchers, FlatSpec}
 
 class CodonTest extends FlatSpec with Matchers {
@@ -17,18 +17,18 @@ class CodonTest extends FlatSpec with Matchers {
   }
 
   "The toProteinList method" should "take a mRNA string and return a protein list" in {
-    val mRnaGenome: List[Char] = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA".toList
+    val mRnaGenome: MRnaGenome = MRna("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA")
     val p: List[Protein] = Protein.proteinString("MAMAPRTEINSTRING")
 
-    Codon.toProteinList(mRnaGenome) should be (p)
+    mRnaGenome.toProteinList should be (p)
   }
 
   "The toString method" should "take a protein list and return it's string counterpart" in {
-    val mRnaGenome: List[Char] = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA".toList
+    val mRnaGenome: MRnaGenome = MRna("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA")
     val r: String = "MAMAPRTEINSTRING"
 
-    val ps: List[Protein] = Codon.toProteinList(mRnaGenome)
-
+    val ps: List[Protein] = mRnaGenome.toProteinList
+    
     Protein.toStringFromList(ps) should be (r)
   }
 }

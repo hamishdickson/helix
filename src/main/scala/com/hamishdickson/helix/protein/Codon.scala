@@ -1,5 +1,8 @@
 package com.hamishdickson.helix.protein
 
+import com.hamishdickson.helix.dna.{NucleotideA, NucleotideG, NucleotideC, Nucleotide}
+import com.hamishdickson.helix.rna._
+
 /**
  * FIXME - this abstraction feels wrong - work out what things should be called and rename
  */
@@ -73,7 +76,6 @@ case object GGG extends Codon
 
 object Codon {
 
-  // FIXME - this should be on an mRna class, not here and I should be able to say mRna.toProteinList
   def toProteinList(mRna: List[Char]): List[Protein] = {
     /**
      * Note: there might be a nicer approach to this using lazyness
@@ -157,6 +159,73 @@ object Codon {
     case List('G','G','C') => GGC
     case List('G','G','A') => GGA
     case List('G','G','G') => GGG
+  }
+
+  def mRnaToCodon(m: List[RnaNucleotide]) = m match {
+    case List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideU) => UUU
+    case List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideC) => UUC
+    case List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideA) => UUA
+    case List(RnaNucleotideU, RnaNucleotideU, RnaNucleotideG) => UUG
+    case List(RnaNucleotideU, RnaNucleotideC, RnaNucleotideU) => UCU
+    case List(RnaNucleotideU, RnaNucleotideC, RnaNucleotideC) => UCC
+    case List(RnaNucleotideU, RnaNucleotideC, RnaNucleotideA) => UCA
+    case List(RnaNucleotideU, RnaNucleotideC, RnaNucleotideG) => UCG
+    case List(RnaNucleotideU, RnaNucleotideA, RnaNucleotideU) => UAU
+    case List(RnaNucleotideU, RnaNucleotideA, RnaNucleotideC) => UAC
+    case List(RnaNucleotideU, RnaNucleotideA, RnaNucleotideA) => UAA
+    case List(RnaNucleotideU, RnaNucleotideA, RnaNucleotideG) => UAG
+    case List(RnaNucleotideU, RnaNucleotideG, RnaNucleotideU) => UGU
+    case List(RnaNucleotideU, RnaNucleotideG, RnaNucleotideC) => UGC
+    case List(RnaNucleotideU, RnaNucleotideG, RnaNucleotideA) => UGA
+    case List(RnaNucleotideU, RnaNucleotideG, RnaNucleotideG) => UGG
+    case List(RnaNucleotideC, RnaNucleotideU, RnaNucleotideU) => CUU
+    case List(RnaNucleotideC, RnaNucleotideU, RnaNucleotideC) => CUC
+    case List(RnaNucleotideC, RnaNucleotideU, RnaNucleotideA) => CUA
+    case List(RnaNucleotideC, RnaNucleotideU, RnaNucleotideG) => CUG
+    case List(RnaNucleotideC, RnaNucleotideC, RnaNucleotideU) => CCU
+    case List(RnaNucleotideC, RnaNucleotideC, RnaNucleotideC) => CCC
+    case List(RnaNucleotideC, RnaNucleotideC, RnaNucleotideA) => CCA
+    case List(RnaNucleotideC, RnaNucleotideC, RnaNucleotideG) => CCG
+    case List(RnaNucleotideC, RnaNucleotideA, RnaNucleotideU) => CAU
+    case List(RnaNucleotideC, RnaNucleotideA, RnaNucleotideC) => CAC
+    case List(RnaNucleotideC, RnaNucleotideA, RnaNucleotideA) => CAA
+    case List(RnaNucleotideC, RnaNucleotideA, RnaNucleotideG) => CAG
+    case List(RnaNucleotideC, RnaNucleotideG, RnaNucleotideU) => CGU
+    case List(RnaNucleotideC, RnaNucleotideG, RnaNucleotideC) => CGC
+    case List(RnaNucleotideC, RnaNucleotideG, RnaNucleotideA) => CGA
+    case List(RnaNucleotideC, RnaNucleotideG, RnaNucleotideG) => CGG
+    case List(RnaNucleotideA, RnaNucleotideU, RnaNucleotideU) => AUU
+    case List(RnaNucleotideA, RnaNucleotideU, RnaNucleotideC) => AUC
+    case List(RnaNucleotideA, RnaNucleotideU, RnaNucleotideA) => AUA
+    case List(RnaNucleotideA, RnaNucleotideU, RnaNucleotideG) => AUG
+    case List(RnaNucleotideA, RnaNucleotideC, RnaNucleotideU) => ACU
+    case List(RnaNucleotideA, RnaNucleotideC, RnaNucleotideC) => ACC
+    case List(RnaNucleotideA, RnaNucleotideC, RnaNucleotideA) => ACA
+    case List(RnaNucleotideA, RnaNucleotideC, RnaNucleotideG) => ACG
+    case List(RnaNucleotideA, RnaNucleotideA, RnaNucleotideU) => AAU
+    case List(RnaNucleotideA, RnaNucleotideA, RnaNucleotideC) => AAC
+    case List(RnaNucleotideA, RnaNucleotideA, RnaNucleotideA) => AAA
+    case List(RnaNucleotideA, RnaNucleotideA, RnaNucleotideG) => AAG
+    case List(RnaNucleotideA, RnaNucleotideG, RnaNucleotideU) => AGU
+    case List(RnaNucleotideA, RnaNucleotideG, RnaNucleotideC) => AGC
+    case List(RnaNucleotideA, RnaNucleotideG, RnaNucleotideA) => AGA
+    case List(RnaNucleotideA, RnaNucleotideG, RnaNucleotideG) => AGG
+    case List(RnaNucleotideG, RnaNucleotideU, RnaNucleotideU) => GUU
+    case List(RnaNucleotideG, RnaNucleotideU, RnaNucleotideC) => GUC
+    case List(RnaNucleotideG, RnaNucleotideU, RnaNucleotideA) => GUA
+    case List(RnaNucleotideG, RnaNucleotideU, RnaNucleotideG) => GUG
+    case List(RnaNucleotideG, RnaNucleotideC, RnaNucleotideU) => GCU
+    case List(RnaNucleotideG, RnaNucleotideC, RnaNucleotideC) => GCC
+    case List(RnaNucleotideG, RnaNucleotideC, RnaNucleotideA) => GCA
+    case List(RnaNucleotideG, RnaNucleotideC, RnaNucleotideG) => GCG
+    case List(RnaNucleotideG, RnaNucleotideA, RnaNucleotideU) => GAU
+    case List(RnaNucleotideG, RnaNucleotideA, RnaNucleotideC) => GAC
+    case List(RnaNucleotideG, RnaNucleotideA, RnaNucleotideA) => GAA
+    case List(RnaNucleotideG, RnaNucleotideA, RnaNucleotideG) => GAG
+    case List(RnaNucleotideG, RnaNucleotideG, RnaNucleotideU) => GGU
+    case List(RnaNucleotideG, RnaNucleotideG, RnaNucleotideC) => GGC
+    case List(RnaNucleotideG, RnaNucleotideG, RnaNucleotideA) => GGA
+    case List(RnaNucleotideG, RnaNucleotideG, RnaNucleotideG) => GGG
   }
 
   def toProtein(c: Codon): Protein = c match {
