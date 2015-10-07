@@ -27,6 +27,32 @@ case object Stop extends Protein
 object Protein {
   def proteinString(s: String): List[Protein] = s.toList.map(p => Protein(p))
 
+  def toStringFromList(ps: List[Protein]): String = ps.foldRight("")((a,b) => maybeUnapply(a) + b)
+
+  // FIXME - this feels like it might be an unapply method?
+  def maybeUnapply(p: Protein): Char = p match {
+    case ProteinA => 'A'
+    case ProteinC => 'C'
+    case ProteinD => 'D'
+    case ProteinE => 'E'
+    case ProteinF => 'F'
+    case ProteinG => 'G'
+    case ProteinH => 'H'
+    case ProteinI => 'I'
+    case ProteinK => 'K'
+    case ProteinL => 'L'
+    case ProteinM => 'M'
+    case ProteinN => 'N'
+    case ProteinP => 'P'
+    case ProteinQ => 'Q'
+    case ProteinR => 'R'
+    case ProteinS => 'S'
+    case ProteinT => 'T'
+    case ProteinV => 'V'
+    case ProteinW => 'W'
+    case ProteinY => 'Y'
+  }
+
   def apply(c: Char) = c match {
     case 'A' => ProteinA
     case 'C' => ProteinC

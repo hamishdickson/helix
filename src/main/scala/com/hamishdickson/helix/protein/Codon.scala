@@ -1,5 +1,9 @@
 package com.hamishdickson.helix.protein
 
+/**
+ * FIXME - this abstraction feels wrong - work out what things should be called and rename
+ */
+
 trait Codon
 
 case object UUU extends Codon
@@ -68,11 +72,16 @@ case object GGA extends Codon
 case object GGG extends Codon
 
 object Codon {
-  def toProteinList(s: String): List[Protein] = {
-    def loop(d: List[Char], ds: List[Protein]): List[Protein] = d match {
-      case a :: b :: c :: tail => {
-        val codon: Codon = Codon(List(a, b, c))
-        val p: Protein = Codon.toProtein(codon)
+
+  // FIXME - this should be on an mRna class, not here and I should be able to say mRna.toProteinList
+  def toProteinList(mRna: List[Char]): List[Protein] = {
+    /**
+     * Note: there might be a nicer approach to this using lazyness
+     */
+    def loop(m: List[Char], ds: List[Protein]): List[Protein] = m match {
+      case i :: j :: k :: tail => {
+        val c: Codon = Codon(List(i, j, k))
+        val p: Protein = Codon.toProtein(c)
 
         if (p == Stop) ds
         else loop(tail, p :: ds)
@@ -80,7 +89,7 @@ object Codon {
       case _ => ds
     }
 
-    loop(s.toList, List()).reverse
+    loop(mRna, List()).reverse
   }
 
   def apply(cx: List[Char]) = cx match {

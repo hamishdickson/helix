@@ -16,10 +16,19 @@ class CodonTest extends FlatSpec with Matchers {
     Codon.toProtein(c) should be (ProteinF)
   }
 
-  "The toProtein list" should "take a mRNA string and return a protein list" in {
-    val s: String ="AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA"
+  "The toProteinList method" should "take a mRNA string and return a protein list" in {
+    val mRnaGenome: List[Char] = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA".toList
     val p: List[Protein] = Protein.proteinString("MAMAPRTEINSTRING")
 
-    Codon.toProteinList(s) should be (p)
+    Codon.toProteinList(mRnaGenome) should be (p)
+  }
+
+  "The toString method" should "take a protein list and return it's string counterpart" in {
+    val mRnaGenome: List[Char] = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA".toList
+    val r: String = "MAMAPRTEINSTRING"
+
+    val ps: List[Protein] = Codon.toProteinList(mRnaGenome)
+
+    Protein.toStringFromList(ps) should be (r)
   }
 }
