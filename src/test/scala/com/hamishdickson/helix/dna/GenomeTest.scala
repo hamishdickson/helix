@@ -49,4 +49,44 @@ class GenomeTest extends FlatSpec with Matchers {
 
     p should be (0.78333 +- 0.0001)
   }
+
+  "A subsequence finder" should "return an empty list if a subseq isn't in a genome" in {
+    val s: Genome = Dna("GAGC")
+    val t: Genome = Dna("T")
+
+    s.subSequencePositions(t) should be (List())
+  }
+
+  it should "return an empty list if a subseq is longer than the genome" in {
+    val s: Genome = Dna("T")
+    val t: Genome = Dna("GAGC")
+
+    s.subSequencePositions(t) should be (List())
+  }
+
+  it should "return an empty list if the subseq or the genome are empty" in {
+    val s: Genome = Dna("")
+    val t: Genome = Dna("GAGC")
+
+    s.subSequencePositions(t) should be (List())
+
+    val u: Genome = Dna("GAGC")
+    val v: Genome = Dna("")
+
+    u.subSequencePositions(v) should be (List())
+  }
+
+  it should "give position 1 if the subseq is the genome" in {
+    val s: Genome = Dna("GAGC")
+    val t: Genome = Dna("GAGC")
+
+    s.subSequencePositions(t) should be (List(1))
+  }
+
+  it should "meet the example" in {
+    val s: Genome = Dna("GATATATGCATATACTT")
+    val t: Genome = Dna("ATAT")
+
+    s.subSequencePositions(t) should be (List(2, 4, 10))
+  }
 }
