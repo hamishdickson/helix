@@ -1,6 +1,13 @@
 package com.hamishdickson.helix.dna
 
-sealed trait Nucleotide
+sealed trait Nucleotide {
+  def asString = this match {
+    case NucleotideA => "A"
+    case NucleotideT => "T"
+    case NucleotideG => "G"
+    case NucleotideC => "C"
+  }
+}
 
 case object NucleotideT extends Nucleotide
 case object NucleotideA extends Nucleotide

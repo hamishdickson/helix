@@ -136,19 +136,35 @@ object Dna {
   def consensus(genomes: List[Genome]): Genome = {
     val a: List[List[Nucleotide]] = genomes.map(i => i.nucleotides).transpose
 
-    val b = for {
-      x <- a
-    } yield (x.count(i => i == NucleotideA),
-        x.count(i => i == NucleotideC),
-        x.count(i => i == NucleotideG),
-        x.count(i => i == NucleotideT))
-
-    val c = for {
-      z <- b
+    val b: List[Nucleotide] = for {
+      z <- meh(a)
     } yield biggest(z)
 
-    Genome(c)
+    Genome(b)
   }
+
+  def meh(a: List[List[Nucleotide]]): List[(Int, Int, Int, Int)] = for {
+    x <- a
+  } yield (x.count(i => i == NucleotideA),
+      x.count(i => i == NucleotideC),
+      x.count(i => i == NucleotideG),
+      x.count(i => i == NucleotideT))
+
+  def formattedConsensus(genomes: List[Genome]): String = {
+    val x: Genome = consensus(genomes)
+
+    val y = meh(genomes.map(i => i.nucleotides).transpose)
+
+    val a = y.foldRight(List[List[Int]]())((a,b) => a match { case (i,j,k,l) => List(i,j,k,l) :: b } ).transpose
+
+    asString(x) +
+      "\nA: " + a(0).mkString(" ") +
+      "\nC: " + a(1).mkString(" ") +
+      "\nG: " + a(2).mkString(" ") +
+      "\nT: " + a(3).mkString(" ")
+  }
+
+  def asString(g: Genome): String = g.nucleotides.map(_.asString).mkString("")
 
   private def biggest(t: (Int, Int, Int, Int)): Nucleotide = {
     if (t._1 >= t._2 && t._1 >= t._3 && t._1 > t._4) NucleotideA
