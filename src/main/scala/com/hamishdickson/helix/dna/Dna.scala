@@ -106,19 +106,21 @@ case class Genome(nucleotides: List[Nucleotide]) extends Dna {
    *
    * Given: Two DNA strings s and t (each of length at most 1 kbp).
    * Return: All locations of t as a substring of s.
+   *
+   * note: weirdly, there is an offset of 1 for the index position
    */
   def subSequencePositions(t: Genome): List[Int] = {
-    def go(u: Int, ts: List[Int]): List[Int] = {
+    def loop(u: Int, ts: List[Int]): List[Int] = {
       val w: Int = this.nucleotides.length - u
       val v: Genome = Genome(this.nucleotides.slice(u, t.nucleotides.length + u))
 
       if (w < t.nucleotides.length) ts
-      else if (v.nucleotides == t.nucleotides) go(u+1, (u+1) :: ts)
-      else go(u+1, ts)
+      else if (v.nucleotides == t.nucleotides) loop(u+1, (u+1) :: ts)
+      else loop(u+1, ts)
     }
 
     if (t.nucleotides.isEmpty) List()
-    else go(0, List()).reverse
+    else loop(0, List()).reverse
   }
 }
 
@@ -129,5 +131,29 @@ object Dna {
     val tot: Int = (k + m + n)*(k + m + n -1)
 
     ((k*k - k) + 2*(k*m) + 2*(k*n) + (.75*(m*m - m)) + 2*(.5*m*n))/tot
+  }
+
+  def consensus(genomes: List[Genome]): Genome = {
+    val a: List[List[Nucleotide]] = genomes.map(i => i.nucleotides).transpose
+
+    val b = for {
+      x <- a
+    } yield (x.count(i => i == NucleotideA),
+        x.count(i => i == NucleotideC),
+        x.count(i => i == NucleotideG),
+        x.count(i => i == NucleotideT))
+
+    val c = for {
+      z <- b
+    } yield biggest(z)
+
+    Genome(c)
+  }
+
+  private def biggest(t: (Int, Int, Int, Int)): Nucleotide = {
+    if (t._1 >= t._2 && t._1 >= t._3 && t._1 > t._4) NucleotideA
+    else if (t._2 >= t._1 && t._2 >= t._3 && t._2 > t._4) NucleotideC
+    else if (t._3 >= t._2 && t._3 >= t._1 && t._3 > t._4) NucleotideG
+    else NucleotideT
   }
 }

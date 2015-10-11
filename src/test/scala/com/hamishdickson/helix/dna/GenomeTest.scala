@@ -89,4 +89,18 @@ class GenomeTest extends FlatSpec with Matchers {
 
     s.subSequencePositions(t) should be (List(2, 4, 10))
   }
+
+  "A collection of genomes" should "yield a consensus genome" in {
+    val g1: Genome = Dna("ATCCAGCT")
+    val g2: Genome = Dna("GGGCAACT")
+    val g3: Genome = Dna("ATGGATCT")
+    val g4: Genome = Dna("AAGCAACC")
+    val g5: Genome = Dna("TTGGAACT")
+    val g6: Genome = Dna("ATGCCATT")
+    val g7: Genome = Dna("ATGGCACT")
+
+    val l: List[Genome] = List(g1, g2, g3, g4, g5, g6, g7)
+
+    Dna.consensus(l) should be (Dna("ATGCAACT"))
+  }
 }
