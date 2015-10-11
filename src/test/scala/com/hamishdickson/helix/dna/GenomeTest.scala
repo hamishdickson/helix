@@ -103,4 +103,18 @@ class GenomeTest extends FlatSpec with Matchers {
 
     Dna.consensus(l) should be (Dna("ATGCAACT"))
   }
+
+  it should "yield a formatted consensus genome" in {
+    val g1: Genome = Dna("ATCCAGCT".replace("\n", ""))
+    val g2: Genome = Dna("GGGCAACT".replace("\n", ""))
+    val g3: Genome = Dna("ATGGATCT".replace("\n", ""))
+    val g4: Genome = Dna("AAGCAACC".replace("\n", ""))
+    val g5: Genome = Dna("TTGGAACT".replace("\n", ""))
+    val g6: Genome = Dna("ATGCCATT".replace("\n", ""))
+    val g7: Genome = Dna("ATGGCACT".replace("\n", ""))
+
+    val l: List[Genome] = List(g1, g2, g3, g4, g5, g6, g7)
+
+    Dna.formattedConsensus(l) should be ("ATGCAACT\nA: 5 1 0 0 5 5 0 0\nC: 0 0 1 4 2 0 6 1\nG: 1 1 6 3 0 1 0 0\nT: 1 5 0 0 0 1 1 6")
+  }
 }
