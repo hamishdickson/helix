@@ -8,4 +8,13 @@ class WabbitsTest extends FlatSpec with Matchers {
 
     wabbits litter(5, 3) should be (19)
   }
+
+  "Mortal wabbits" should "die after m months" in {
+    val n: Int = 6
+    val m: Int = 3
+
+    val wabbits = new Wabbits
+
+    wabbits.mortalLitter(n, m) should be (4)
+  }
 }

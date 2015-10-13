@@ -134,6 +134,8 @@ object Dna {
   }
 
   /**
+   * FIXME - find a better desciption here
+   *
    * A matrix is a rectangular table of values divided into rows and columns. An m×n matrix has m rows and n columns.
    * Given a matrix A, we write Ai,j to indicate the value found at the intersection of row i and column j.
    *
@@ -165,11 +167,11 @@ object Dna {
     val x: Genome = consensus(genomes)
 
     val y: List[(Int, Int, Int, Int)] =
-    toTupleList(genomes.map(_.nucleotides).transpose)
+    toTupleList(genomes.map(_.nucleotides) transpose)
 
     val a: List[List[Int]] = y.foldRight(List[List[Int]]())((a,b) => a match {
       case (i,j,k,l) => List(i,j,k,l) :: b
-    }).transpose
+    }) transpose
 
     asString(x) +
     "\nA: " + a.head.mkString(" ") +
@@ -182,10 +184,10 @@ object Dna {
 
   private def toTupleList(a: List[List[Nucleotide]]): List[(Int, Int, Int, Int)] = for {
     x <- a
-  } yield (x.count(i => i == NucleotideA),
-      x.count(i => i == NucleotideC),
-      x.count(i => i == NucleotideG),
-      x.count(i => i == NucleotideT))
+  } yield (x count(i => i == NucleotideA),
+      x count(i => i == NucleotideC),
+      x count(i => i == NucleotideG),
+      x count(i => i == NucleotideT))
 
   private def biggest(t: (Int, Int, Int, Int)): Nucleotide = {
     if (t._1 >= t._2 && t._1 >= t._3 && t._1 > t._4) NucleotideA
