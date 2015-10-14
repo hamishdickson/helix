@@ -54,5 +54,19 @@ class Wabbits {
    * 1 1 2 3 5 8
    * 1 1 2 2 3 4
    */
-  def mortalLitter(n: Int, m: Int): Int = 4
+  @deprecated("Do not use - suspected bug in here")
+  def mortalLitter(n: Int, m: Int): BigInt = {
+    val j: List[BigInt] = List(1, 1)
+
+    def loop(q: Int, lx: List[BigInt]): List[BigInt] = {
+      def k(p: BigInt, l: List[BigInt]): List[BigInt] = {
+        if (m - 1 < l.size) l.head + l(1) - l(m - 1) :: l
+        else l.head + l(1) :: l
+      }
+      if (q == n) lx
+      else loop(q + 1, k(q, lx))
+    }
+
+    loop(2, j).head
+  }
 }

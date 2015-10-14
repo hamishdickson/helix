@@ -15,6 +15,8 @@ class WabbitsTest extends FlatSpec with Matchers {
 
     val wabbits = new Wabbits
 
-    wabbits.mortalLitter(n, m) should be (4)
+    wabbits.mortalLitter(3, m) should be (2)
+    wabbits.mortalLitter(4, m) should be (2)
+    wabbits.mortalLitter(5, m) should be (3)
   }
 }
