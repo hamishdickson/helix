@@ -2,7 +2,7 @@
 
 A purely functional bioinformatics library written in scala.
 
-[![Build Status](https://travis-ci.org/hamishdickson/bioinformatics.svg?branch=master)](https://travis-ci.org/hamishdickson/bioinformatics)
+[![Build Status](https://travis-ci.org/hamishdickson/helix.svg?branch=master)](https://travis-ci.org/hamishdickson/helix)
 
 ## Project status
 
