@@ -4,7 +4,7 @@ import com.hamishdickson.helix.protein.{ProteinChain, Codon, Protein, Stop}
 
 import scala.annotation.tailrec
 
-trait MRna
+sealed trait MRna
 
 case class MRnaGenome(nucleotides: List[RnaNucleotide]) extends MRna {
   def toProteinList: ProteinChain = {

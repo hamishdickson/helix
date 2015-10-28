@@ -1,6 +1,6 @@
 package com.hamishdickson.helix.rna
 
-trait Rna
+sealed trait Rna
 
 case class RnaGenome(nucleotides: List[RnaNucleotide]) extends Rna
 

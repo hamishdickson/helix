@@ -6,7 +6,7 @@ import com.hamishdickson.helix.rna._
  * I'm pretty convinced there is just no nice way to do this.
  */
 
-trait Codon {
+sealed trait Codon {
   def toProtein: Protein = this match {
     case UUU => ProteinF
     case UUC => ProteinF

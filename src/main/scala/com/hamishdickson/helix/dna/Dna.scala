@@ -2,7 +2,7 @@ package com.hamishdickson.helix.dna
 
 import com.hamishdickson.helix.rna._
 
-trait Dna
+sealed trait Dna
 
 case class Genome(nucleotides: List[Nucleotide]) extends Dna {
   /**
