@@ -60,8 +60,11 @@ class Wabbits {
 
     def loop(q: Int, lx: List[BigInt]): List[BigInt] = {
       def k(p: BigInt, l: List[BigInt]): List[BigInt] = {
-        if (m - 1 < l.size) l.head + l(1) - l(m - 1) :: l
-        else l.head + l(1) :: l
+        if (m - 1 < l.size)
+          // this is wrong - should ne n - m - 1, not m - 1
+          l.head + l(1) - l(m - 1) :: l
+        else
+          l.head + l(1) :: l
       }
       if (q == n) lx
       else loop(q + 1, k(q, lx))
