@@ -1,4 +1,4 @@
-package com.hamishdickson.helix.wrabbits
+package com.hamishdickson.helix.wabbits
 
 import scala.annotation.tailrec
 
