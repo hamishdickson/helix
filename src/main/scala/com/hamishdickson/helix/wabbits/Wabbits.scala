@@ -50,26 +50,23 @@ class Wabbits {
    * Given: Positive integers n≤100 and m≤20.
    * Return: The total number of pairs of rabbits that will remain after the n-th month if all rabbits live for m months
    *
-   * Fn = Fn=Fn−1 + Fn−2 - Fn-m
+   * Fn = Fn=Fn−1 + Fn−2 - (number born on Fn-m)
    * 1 1 2 3 5 8
    * 1 1 2 2 3 4
    */
-  @deprecated("Do not use - suspected bug in here")
   def mortalLitter(n: Int, m: Int): BigInt = {
     val j: List[BigInt] = List(1, 1)
 
-    def loop(q: Int, lx: List[BigInt]): List[BigInt] = {
-      def k(p: BigInt, l: List[BigInt]): List[BigInt] = {
-        if (m - 1 < l.size)
-          // this is wrong - should ne n - m - 1, not m - 1
-          l.head + l(1) - l(m - 1) :: l
+    def g(gen: Int, as: (List[BigInt], List[BigInt])): (List[BigInt], List[BigInt]) = {
+      if (gen == n) as
+      else {
+        if (m - 1 >= as._1.size)
+          g(gen + 1, (as._2(1) :: as._1, as._2.head + as._2(1) :: as._2))
         else
-          l.head + l(1) :: l
+          g(gen + 1, (as._2(1) :: as._1, as._2.head + as._2(1) - as._1(m - 1) :: as._2))
       }
-      if (q == n) lx
-      else loop(q + 1, k(q, lx))
     }
 
-    loop(2, j).head
+    g(2, (List(1,1), j))._2.head
   }
 }

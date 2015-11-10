@@ -22,7 +22,6 @@ class WabbitsTest extends FlatSpec with Matchers {
   }
 
   "Mortal wabbits" should "die after 3 months" in {
-/*
     val n: Int = 6
     val m: Int = 3
 
@@ -32,11 +31,6 @@ class WabbitsTest extends FlatSpec with Matchers {
     wabbits.mortalLitter(4, m) should be (2)
     wabbits.mortalLitter(5, m) should be (3)
     wabbits.mortalLitter(6, m) should be (4)
-    wabbits.mortalLitter(7, m) should be (5)
-    wabbits.mortalLitter(8, m) should be (7)
-*/
-
-    pending
   }
 
   "Mortal wabbits" should "die after 4 months" in {
