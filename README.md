@@ -1,4 +1,4 @@
-# Helix
+# helix
 
 A purely functional bioinformatics library written in scala.
 
