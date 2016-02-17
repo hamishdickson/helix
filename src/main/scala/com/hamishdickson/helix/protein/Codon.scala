@@ -1,6 +1,6 @@
 package com.hamishdickson.helix.protein
 
-import com.hamishdickson.helix.rna._
+import com.hamishdickson.helix.genomes.rna._
 
 /**
  * I'm pretty convinced there is just no nice way to do this.

@@ -1,4 +1,4 @@
-package com.hamishdickson.helix.dna
+package com.hamishdickson.helix.genomes.dna
 
 sealed trait Nucleotide {
   def asString = this match {

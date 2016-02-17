@@ -1,6 +1,6 @@
 package com.hamishdickson.helix.protein
 
-import com.hamishdickson.helix.rna.{MRna, MRnaGenome, RnaNucleotide, RnaNucleotideU}
+import com.hamishdickson.helix.genomes.rna.{MRna, MRnaGenome, RnaNucleotide, RnaNucleotideU}
 import org.scalatest.{Matchers, FlatSpec}
 
 class CodonTest extends FlatSpec with Matchers {

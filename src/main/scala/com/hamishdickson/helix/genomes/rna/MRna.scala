@@ -1,4 +1,4 @@
-package com.hamishdickson.helix.rna
+package com.hamishdickson.helix.genomes.rna
 
 import com.hamishdickson.helix.protein.{ProteinChain, Codon, Protein, Stop}
 

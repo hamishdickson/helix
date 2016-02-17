@@ -1,4 +1,4 @@
-package com.hamishdickson.helix.rna
+package com.hamishdickson.helix.genomes.rna
 
 sealed trait Rna
 

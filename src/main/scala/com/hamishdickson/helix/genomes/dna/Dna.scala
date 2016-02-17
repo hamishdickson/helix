@@ -1,10 +1,10 @@
-package com.hamishdickson.helix.dna
+package com.hamishdickson.helix.genomes.dna
 
-import com.hamishdickson.helix.rna._
+import com.hamishdickson.helix.genomes.rna._
 
 sealed trait Dna
 
-case class Genome(nucleotides: List[Nucleotide]) extends Dna {
+case class DnaGenome(nucleotides: List[Nucleotide]) extends Dna {
   /**
    * A string is simply an ordered collection of symbols selected from some alphabet and formed into a word; the length
    * of a string is the number of symbols that it contains.
@@ -44,7 +44,7 @@ case class Genome(nucleotides: List[Nucleotide]) extends Dna {
    * Given: A DNA string s of length at most 1000 bp.
    * Return: The reverse complement sc of s.
    */
-  def reverseComplementer: Genome = Genome(nucleotides.reverse map {
+  def reverseComplementer: DnaGenome = DnaGenome(nucleotides.reverse map {
     case NucleotideA => NucleotideT
     case NucleotideT => NucleotideA
     case NucleotideC => NucleotideG
@@ -84,7 +84,7 @@ case class Genome(nucleotides: List[Nucleotide]) extends Dna {
    *
    * Implementation: l zip k gives you a list like (l1, k1), (l2, k2)... then foldRight to compare the tuple elements
    */
-  def hemmingDistance(t: Genome): Int = {
+  def hemmingDistance(t: DnaGenome): Int = {
     val z: List[(Nucleotide, Nucleotide)] = nucleotides zip t.nucleotides
 
     z.foldRight(0)((a, b) => if (a._1 == a._2) b else 1 + b)
@@ -109,10 +109,10 @@ case class Genome(nucleotides: List[Nucleotide]) extends Dna {
    *
    * note: weirdly, there is an offset of 1 for the index position
    */
-  def subSequencePositions(t: Genome): List[Int] = {
+  def subSequencePositions(t: DnaGenome): List[Int] = {
     def loop(u: Int, ts: List[Int]): List[Int] = {
       val w: Int = this.nucleotides.length - u
-      val v: Genome = Genome(this.nucleotides.slice(u, t.nucleotides.length + u))
+      val v: DnaGenome = DnaGenome(this.nucleotides.slice(u, t.nucleotides.length + u))
 
       if (w < t.nucleotides.length) ts
       else if (v.nucleotides == t.nucleotides) loop(u+1, (u+1) :: ts)
@@ -125,7 +125,7 @@ case class Genome(nucleotides: List[Nucleotide]) extends Dna {
 }
 
 object Dna {
-  def apply(s: String): Genome = Genome(s.toList.map(g => Nucleotide(g)))
+  def apply(s: String): DnaGenome = DnaGenome(s.toList.map(g => Nucleotide(g)))
 
   def getProbOfTrait(k: Int, m: Int, n: Int): Double = {
     val tot: Int = (k + m + n)*(k + m + n -1)
@@ -152,19 +152,19 @@ object Dna {
    * Return: A consensus string and profile matrix for the collection. (If several possible consensus strings exist,
    * then you may return any one of them.)
    */
-  def consensus(genomes: List[Genome]): Genome = {
+  def consensus(genomes: List[DnaGenome]): DnaGenome = {
     val a: List[List[Nucleotide]] = genomes.map(_.nucleotides).transpose
 
     val b: List[Nucleotide] = for {
       z <- toTupleList(a)
     } yield biggest(z)
 
-    Genome(b)
+    DnaGenome(b)
   }
 
   @deprecated("formattedConsensus is very inefficient and used for testing only.")
-  def formattedConsensus(genomes: List[Genome]): String = {
-    val x: Genome = consensus(genomes)
+  def formattedConsensus(genomes: List[DnaGenome]): String = {
+    val x: DnaGenome = consensus(genomes)
 
     val y: List[(Int, Int, Int, Int)] =
     toTupleList(genomes.map(_.nucleotides) transpose)
@@ -180,7 +180,7 @@ object Dna {
     "\nT: " + a(3).mkString(" ")
   }
 
-  private def asString(g: Genome): String = g.nucleotides.map(_.asString).mkString("")
+  private def asString(g: DnaGenome): String = g.nucleotides.map(_.asString).mkString("")
 
   private def toTupleList(a: List[List[Nucleotide]]): List[(Int, Int, Int, Int)] = for {
     x <- a
