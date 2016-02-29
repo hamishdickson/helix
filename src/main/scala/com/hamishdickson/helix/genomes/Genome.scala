@@ -5,8 +5,8 @@ import scala.language.higherKinds
 /**
   * Common DNA/RNA/mRNA things
   */
-sealed trait Genome[F[_]]
-case class GenomeString[A](g: List[A]) extends Genome {
+sealed trait Genome[+A]
+case class GenomeString[A](g: List[A]) extends Genome[A] {
 
   /**
     * How many times does nucleotide n occur in genome g ?
